@@ -51,7 +51,7 @@ int deviceInquiryCount = 0;
     _busy = FALSE;
 
     if (_foundDevices == NULL) {
-        _foundDevices = [NSMutableArray arrayWithCapacity:15];
+        _foundDevices = [[NSMutableArray alloc] initWithCapacity:15];
         if (!_foundDevices) {
            return FALSE;
         }
@@ -479,6 +479,7 @@ GetRemoteDeviceFriendlyName::GetRemoteDeviceFriendlyName() {
 
 GetRemoteDeviceFriendlyName::~GetRemoteDeviceFriendlyName() {
     dispatch_release(inquiryFinishedEvent);
+    [delegate release];
     delegate = nil;
 }
 
